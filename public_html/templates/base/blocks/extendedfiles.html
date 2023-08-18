@@ -1,15 +1,21 @@
 {% for aiuextfiles in aiublock.get_extfiles %}
-    {% for menutag in aiuextfiles.tagmenu.all %}
-    {% if not menutag.sidebar %}
-    <ul class="aiunav nav justify-content-end" id="{{ menutag.slug }}">
-        {% for tagitem in menutag.get_itemtag %}
-        <li class="nav-item">
-            <a href="#{{ tagitem.slug }}" class="nav-link">{{ tagitem.titleitem }}</a>
-        </li>
-        {% endfor %}
-    </ul>
-    {% endif %}
-    {% endfor %}
+    <div class="coltainer-fluid">
+        <div class="row justify-content-end">
+            <div class="col-auto">
+            {% for menutag in aiuextfiles.tagmenu.all %}
+                {% if not menutag.sidebar %}
+                <ul class="aiunav nav justify-content-between" id="{{ menutag.slug }}">
+                    {% for tagitem in menutag.get_itemtag %}
+                    <li class="nav-item">
+                        <a href="#{{ tagitem.slug }}" class="nav-link">{{ tagitem.titleitem }}</a>
+                    </li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+            {% endfor %}
+            </div>
+        </div>
+    </div>
     <div class="container-fluid px-0 mx-0 aiubudget">
         <div class="row justify-content-between">
             <div class="col-12 col-md-2">
