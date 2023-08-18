@@ -15,7 +15,7 @@ Properties:
 1) MVC models (Bases Django, Model and Controller in aiusite5, Views in public_html)
 2) Security - in Model-Controller not views in public_html and secures configurations .htaccess (Apache)
 3) Extensions parameters for site
-4) Loaders dynamics content and page
+4) Loaders dynamics content and page (dynamic html, css, js(experiments parameters) )
 
 Work in Debug = True
 
