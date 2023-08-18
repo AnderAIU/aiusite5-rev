@@ -283,7 +283,7 @@ class FilesUpload(models.Model):
         verbose_name_plural = 'Файлы и документы'
 
     def __str__(self):
-        return self.filesUrl.url
+        return self.title + ' Path:' + self.filesUrl.url
 
     def save(self, *args, **kwargs):
         if self.filesUrl and self.filesUrl.url:
