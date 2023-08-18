@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-r*c0o3)te)zsnx*1v!*pp@jvj2o(7$#8yv)p_0-adl6hdy%q5k
 DEBUG = True
 #DEBUG = False
 
-ALLOWED_HOSTS = ['anderaiu.su']
+ALLOWED_HOSTS = ['anderaiu.su', '192.168.6.19']
 
 
 # Application definition

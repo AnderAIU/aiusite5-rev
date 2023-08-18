@@ -239,6 +239,11 @@ body {
 .aiufile:hover, .aiufile:focus {
   background-color: {{ colors.hover_files }};
 }
+.aiufheader {
+  background-color: {{ colors.hover_files }};
+  color: {{ colors.title_color }};
+  font-weight: 600;
+}
 .aiucomment {
   border: 3px solid {{ colors.title_color }};
 }

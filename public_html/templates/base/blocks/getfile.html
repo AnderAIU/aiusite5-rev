@@ -1,33 +1,48 @@
 {% for getfile in aiufiles %}
 {% load static %}
 <div class="aiufile container-fluid position-relative">
-    {% if getfile.filetype == 'application/pdf' %}
-    <img src="{% static 'icons/pdf.png' %}" class="img-fluid">
-    <span class="aiufile__openview" mimefile="{{ getfile.filetype }}" ophref="{{ getfile.filesUrl.url }}"><img src="{% static 'icons/view1.svg' %}" class="px-2 py-2"></span>
-    {% elif getfile.filetype == 'application/msword' %}
-    <img src="{% static 'icons/doc.png' %}" class="img-fluid">
-    <span class="aiufile__openview" mimefile="{{ getfile.filetype }}" ophref="{{ getfile.filesUrl.url }}"><img src="{% static 'icons/view1.svg' %}" class="px-2 py-2"></span>
-    {% elif getfile.filetype == 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' %}
-    <img src="{% static 'icons/doc.png' %}" class="img-fluid">
-    <span class="aiufile__openview" mimefile="{{ getfile.filetype }}" ophref="{{ getfile.filesUrl.url }}"><img src="{% static 'icons/view1.svg' %}" class="px-2 py-2"></span>
-    {% elif getfile.filetype == 'application/zip' %}
-    <img src="{% static 'icons/zip.png' %}" class="img-fluid">
-    {% elif getfile.filetype == 'application/octet-stream' %}
-    <img src="{% static 'icons/zip.png' %}" class="img-fluid">
-    {% elif getfile.filetype == 'application/x-zip-compressed' %}
-    <img src="{% static 'icons/zip.png' %}" class="img-fluid">
-    {% elif getfile.filetype == 'multipart/x-zip' %}
-    <img src="{% static 'icons/zip.png' %}" class="img-fluid">
-    {% elif getfile.filetype == 'application/vnd.rar' %}
-    <img src="{% static 'icons/rar.png' %}" class="img-fluid">
-    {% elif getfile.filetype == 'application/x-rar-compressed' %}
-    <img src="{% static 'icons/rar.png' %}" class="img-fluid">
-    {% elif getfile.filetype == 'application/octet-stream' %}
-    <img src="{% static 'icons/rar.png' %}" class="img-fluid">
-    {% else %}
-    <img src="{% static 'icons/non.png' %}" class="img-fluid">
-    {% endif %}
-    <span>{{ getfile.title }}</span>
-    <a class="aiufile__link" href="{{ getfile.filesUrl.url }}" target="_blank"><img src="{% static 'icons/download.svg' %}" class="px-2 py-2"></a>
+    <div class="row">
+        <div class="col-1">
+            {% if getfile.filetype == 'application/pdf' %}
+            <img src="{% static 'icons/pdf.png' %}" class="img-fluid">
+            {% elif getfile.filetype == 'application/msword' %}
+            <img src="{% static 'icons/doc.png' %}" class="img-fluid">
+            {% elif getfile.filetype == 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' %}
+            <img src="{% static 'icons/doc.png' %}" class="img-fluid">
+            {% elif getfile.filetype == 'application/zip' %}
+            <img src="{% static 'icons/zip.png' %}" class="img-fluid">
+            {% elif getfile.filetype == 'application/octet-stream' %}
+            <img src="{% static 'icons/zip.png' %}" class="img-fluid">
+            {% elif getfile.filetype == 'application/x-zip-compressed' %}
+            <img src="{% static 'icons/zip.png' %}" class="img-fluid">
+            {% elif getfile.filetype == 'multipart/x-zip' %}
+            <img src="{% static 'icons/zip.png' %}" class="img-fluid">
+            {% elif getfile.filetype == 'application/vnd.rar' %}
+            <img src="{% static 'icons/rar.png' %}" class="img-fluid">
+            {% elif getfile.filetype == 'application/x-rar-compressed' %}
+            <img src="{% static 'icons/rar.png' %}" class="img-fluid">
+            {% elif getfile.filetype == 'application/octet-stream' %}
+            <img src="{% static 'icons/rar.png' %}" class="img-fluid">
+            {% else %}
+            <img src="{% static 'icons/non.png' %}" class="img-fluid">
+            {% endif %}            
+        </div>
+        <div class="col-8">
+            <span>{{ getfile.title }}</span>
+        </div>
+        <div class="col-2">
+            <span>{{ getfile.date_pub|date:"d-m-Y" }}</span>
+        </div>
+        <div class="col-1">
+            {% if getfile.filetype == 'application/pdf' %}
+            <span class="aiufile__openview" mimefile="{{ getfile.filetype }}" ophref="{{ getfile.filesUrl.url }}"><img src="{% static 'icons/view1.svg' %}" class="px-2 py-2"></span>
+            {% elif getfile.filetype == 'application/msword' %}
+            <span class="aiufile__openview" mimefile="{{ getfile.filetype }}" ophref="{{ getfile.filesUrl.url }}"><img src="{% static 'icons/view1.svg' %}" class="px-2 py-2"></span>
+            {% elif getfile.filetype == 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' %}
+            <span class="aiufile__openview" mimefile="{{ getfile.filetype }}" ophref="{{ getfile.filesUrl.url }}"><img src="{% static 'icons/view1.svg' %}" class="px-2 py-2"></span>
+            {% endif %}
+            <a class="aiufile__link" href="{{ getfile.filesUrl.url }}" target="_blank"><img src="{% static 'icons/download.svg' %}" class="px-2 py-2"></a>
+        </div>
+    </div>
 </div>
 {% endfor %}
