@@ -233,6 +233,7 @@ function getPosts(name_page) {
         sechrefs = name_page;
         $('#aiuheader .h1').empty();
         $('#aiupages').empty();
+        $('#aiuheader .h1').append("Загрузка страницы...");
         // preloader on
       },
       success: function(response) {
@@ -241,7 +242,9 @@ function getPosts(name_page) {
               pagehead = post.header;
               tmp = post.fullmenu;
               reloadSechrefs(post.title);
+              $('#aiuheader .h1').empty();
               $('#aiuheader .h1').append(pagehead);
+              $('#aiupages').empty();
               $('#aiupages').append(pagecont);
               if (tmp=='full') {
                 //fullmenusite(1);
