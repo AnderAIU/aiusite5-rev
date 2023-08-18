@@ -229,8 +229,7 @@ body {
   color: {{ colors.menu_text_color }} !important;
 }
 .aiufile img {
-  max-height: 45px;
-  min-height: 100%;
+  max-width: 45px;
 }
 .aiufile {
   background-color: transparent;

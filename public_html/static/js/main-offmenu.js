@@ -213,8 +213,8 @@ function getFiles(tagsfile) {
       $('#aiufiles').empty();
     },
     success: function(response) {
-      $('#aiufiles').empty();
       $.each(response, function(index, post) {
+        $('#aiufiles').empty();
         $('#aiufiles').append(post.files);
       });
     },

@@ -1,7 +1,7 @@
 {% for getfile in aiufiles %}
 {% load static %}
 <div class="aiufile container-fluid position-relative">
-    <div class="row">
+    <div class="row align-items-center">
         <div class="col-4 col-md-1">
             {% if getfile.filetype == 'application/pdf' %}
             <img src="{% static 'icons/pdf.png' %}" class="img-fluid">
@@ -30,10 +30,10 @@
         <div class="col-8">
             <span>{{ getfile.title }}</span>
         </div>
-        <div class="col-6 col-md-2">
+        <div class="col-12 col-md-2">
             <span>{{ getfile.date_pub|date:"d-m-Y" }}</span>
         </div>
-        <div class="col-6 col-md-1">
+        <div class="col-12 col-md-1">
             {% if getfile.filetype == 'application/pdf' %}
             <span class="aiufile__openview" mimefile="{{ getfile.filetype }}" ophref="{{ getfile.filesUrl.url }}"><img src="{% static 'icons/view1.svg' %}" class="px-2 py-2"></span>
             {% elif getfile.filetype == 'application/msword' %}
