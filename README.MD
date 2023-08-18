@@ -1,5 +1,5 @@
 AIUsite5 CMS + Site
-CMS in developing from Django framework, Python
+CMS in developing in bases Django framework 4.2, Python 3.11 and modules extensions list in requirement.txt
 
 Components:
 1) Pages html template
