@@ -1,0 +1,8 @@
+{% extends 'base/assets/row.html' %}
+{% block outblock %}
+{% for txtb in row.TextBlock_set.all %}
+    <div class="col-12" id="aiublockorder-{{ row.order }}">
+        {{ txtb.contenthtml|safe }}
+    </div>
+{% endfor %}
+{% endblock %}

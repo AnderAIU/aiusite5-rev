@@ -1,0 +1,23 @@
+{% extends 'base/blocks/diagram-row.html' %}
+{% block rowitem %}
+    {% for dcols in drows.get_col %}
+        <div class="col mx-3 my-3 px-1 py-3 diagrcol d-flex align-items-center justify-content-center">
+            {% if dcols.title and dcols.title.strip %}<h3 class="aiu-diagrcol-title h4">{{ dcols.title }}</h3>{% endif %}
+            {% if dcols.get_elem %}<button class="btn btn-primary aiucollapseopen" type="button" data-toggle="collapse" data-target="#{{ dcols.slug }}" aria-expanded="false" aria-controls="{{ dcols.slug }}">Показать{% endif %}
+        </div>
+        
+        {% if dcols.get_elem %}
+        <div class="collapse col-12 mx-3 my-3 px-3 py-1 order-last aiucollapse" id="{{ dcols.slug }}">
+            <!--<div class="card card-body">-->
+            {% for delem in dcols.get_elem %}
+            <div class="my-3">
+                <h3 class="h3 aiu-elem-title">{{ delem.title }}</h3>
+                <p>{{ delem.fio }}</p>
+                <a href="tel:{{ delem.tel }}">{{ delem.tel }}</a>
+            </div>
+            {% endfor %}
+            <!--</div>-->
+        </div>
+        {% endif %}
+    {% endfor %}
+{% endblock %}

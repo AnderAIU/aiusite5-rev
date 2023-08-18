@@ -1,0 +1,292 @@
+{% load static %}
+
+/*
+Made in Aiu, Russian Developers
+Profile {{ colors.name_profile }}
+*/
+
+h2, h3, h4, h5, h6, h7, h8, a, p {
+  color: {{ colors.text_color }}
+}
+
+a {
+  text-decoration: none;
+}
+
+a:hover, a:focus {
+  color: {{ colors.title_color }} !important;
+}
+
+main {
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+
+body {
+  background-color: {{ colors.background_color }};
+}
+
+/* #  padding-left: {{ colors.left_padding }}%; */
+
+#aiupages {
+  padding-right: 0 !important;
+  padding-left: {{ colors.left_padding }}%;
+}
+
+#aiupages.full {
+  padding-left: 0 !important;
+}
+
+.btn-toggle {
+  color: rgba(0, 0, 0, .65);
+  background-color: transparent;
+}
+.btn-toggle:hover,
+.btn-toggle:focus {
+  color: rgba(0, 0, 0, .85);
+  background-color: {{ colors.hover_color }};
+}
+.btn-toggle[aria-expanded="true"] {
+  color: rgba(0, 0, 0, .85);
+}
+.btn-toggle-nav a:hover,
+.btn-toggle-nav a:focus {
+  background-color: #d2f4ea;
+}
+.b-example-divider {
+  background-color: rgba(0, 0, 0, .1);
+}
+/* My global theme CSS styles */
+.bg-aiu-pres {
+  background-color: {{ colors.menu_color }}!important;
+}
+.bg-aiu-pres a, .bg-aiu-pres p, .bg-aiu-pres li, .bg-aiu-pres h1, .bg-aiu-pres h2, .bg-aiu-pres h3, .bg-aiu-pres h4, .bg-aiu-pres h5, .bg-aiu-pres h6 {
+  color: {{ colors.menu_text_color }};
+}
+.bg-aiu-pres li:hover a, .bg-aiu-pres li:focus a, .bg-aiu-pres li.current a {
+  background-color: {{ colors.menu_text_color }};
+  color: {{ colors.menu_color }} !important;
+}
+.aiucolumn {
+  background-color: transparent;
+}
+.aiucolumn:hover, .aiucolumn:focus {
+  background-color: {{ colors.hover_color }};
+}
+.aiutitle {
+  color: {{ colors.title_color }};
+  font-size: 1.2rem;
+}
+#aiuheader .h1 {
+  color: {{ colors.title_color }};
+  max-width: 1024px;
+}
+.aiumenu .ms-1 {
+  font-size: 1.2rem;
+}
+/* Old */
+.bg-aiu-pres hr {
+  color: #fff;
+}
+.aiusection-1 {
+  color: #ffffff;
+}
+.aiusection-1 .mask {
+  background: rgba(0,0,0,.6);
+}
+.aiumenu-close {
+  color: #000;
+}
+/* Title custom */
+.aiu-custom-title .h5 {
+  display: inline-block;
+  position: relative;
+  padding: 0 0 10px 0;
+  font-weight: 400;
+  margin-bottom: 10px;
+}
+.aiu-custom-title .h5:after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background-color: {{ colors.title_color }};
+}
+/* Plitki ModernUI */
+.aiumodern {
+  min-height: 250px;
+}
+.aiumodern a {
+  display: inline-block;
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  text-decoration: none;
+}
+.aiumodern .h5 {
+  color: {{ colors.menu_text_color }};
+  text-decoration: none;
+  z-index: 2;
+  position: absolute;
+  margin: 20px 20px 0 20px;
+}
+.aiumodern .backgr {
+  background-color: rgba(0,0,0,.3);
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 0;
+}
+.aiumodern img {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: -1;
+  min-height: 100%;
+  max-width: 130%;
+}
+.aiupos {
+  max-width: 300px;
+}
+.aiupos, .aiumodern {
+  overflow: hidden;
+}
+/* Contact Block */
+.aiucontact .h5{
+  display: inline-block;
+  position: relative;
+  padding: 0 0 10px 0;
+  font-weight: 400;
+  margin-bottom: 10px;
+}
+.aiucontact .h5:after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background-color: {{ colors.title_color }};
+}
+.aiudiagr {
+  position: relative;
+  width: 70%;
+  min-width: 300px;
+}
+
+.aiudiagr .aiu-custom-title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.aiudiagr .h4 {
+  font-weight: 400;
+}
+
+.aiudiagr .diagrcol {
+  position: relative;
+  border: 3px solid {{ colors.title_color }};
+}
+.aiudiagr .aiucollapse {
+  position: relative;
+  border: 3px solid {{ colors.title_color }};
+}
+
+.aiudiagr .aiu-diagrcol-title {
+  text-align: center;
+}
+
+.aiudiagr .aiucollapseopen {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background-color: transparent;
+  border: 0;
+  color: {{ colors.title_color }};
+  padding: 0 2px 0 0;
+  font-size: .7rem;
+}
+
+.aiudiagr a {
+  text-decoration: none;
+}
+.aiunav a {
+  background-color: transparent;
+  color: {{ colors.title_color }};
+}
+.aiunav a.active {
+  background-color: {{ colors.hover_color }};
+  color: {{ colors.menu_text_color }};
+}
+.aiunav a:hover, .aiunav a:focus {
+  background-color: {{ colors.hover_color }};
+  color: {{ colors.menu_text_color }} !important;
+}
+.aiufile img {
+  max-height: 45px;
+  min-height: 100%;
+}
+.aiufile {
+  background-color: transparent;
+  padding: 5px 10px 5px 10px;
+}
+.aiufile:hover, .aiufile:focus {
+  background-color: {{ colors.hover_files }};
+}
+.aiucomment {
+  border: 3px solid {{ colors.title_color }};
+}
+.aiucomment p {
+  color: {{ colors.title_color }};
+}
+.aiufile__link {
+  max-height: 100%;
+  display: none;
+}
+.aiufile__openview img {
+  display: none;
+}
+.aiufile:hover .aiufile__link, .aiufile:focus .aiufile__link {
+  display: inline;
+}
+.aiufile:hover .aiufile__openview img, .aiufile:focus .aiufile__openview img {
+  display: inline;
+}
+.aiufile__openview img, .aiufile__link {
+  cursor: pointer;
+}
+.aiuviewer {
+  display: none;
+  position: relative;
+  background: white;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 999;
+}
+.aiuviewer.active {
+  display: block;
+}
+.aiuviewer__close {
+  position: absolute;
+  background-color: {{ colors.hover_color }};
+  color: {{ colors.menu_text_color }};
+  border: 2px solid {{ colors.hover_color }};
+  left: 0;
+  top: 0;
+}
+.aiuviewer__close:hover {
+  background-color: {{ colors.menu_text_color }};
+  color: {{ colors.hover_color }};
+}
+.view-panel {
+  position: absolute;
+  top: 0;
+  right: 0;
+}

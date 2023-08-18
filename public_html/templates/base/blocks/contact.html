@@ -1,0 +1,19 @@
+{% for aiucontact in aiublock.get_contact %}
+<div class="container aiucontact px-0 py-0">
+    <div class="row">
+        <div class="col-12 col-md-6">
+            {{ aiucontact.col01html|safe }}
+        </div>
+        <div class="col-12 col-md-6">
+            <p class="h5">Почтовый адрес</p>
+            <p>{{ aiucontact.post_addr }}</p>
+            <p class="h5">Руководство</p>
+            <p>{{ aiucontact.seo_pr }}</p>
+            <p>{{ aiucontact.tel }}</p>
+            <p class="py-0">Факс</p>
+            <p>{{ aiucontact.fax }}</p>
+            <p>e-mail: <a href="mailto:{{ aiucontact.email }}">{{ aiucontact.email }}</a></p>
+        </div>
+    </div>
+</div>
+{% endfor %}

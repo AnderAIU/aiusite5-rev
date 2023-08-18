@@ -1,0 +1,5 @@
+{% for aiutext in aiublock.get_textblock %}
+    <div class="col-12" id="aiublockorder-{{ aiutext.order }}">
+        {{ aiutext.contenthtml|safe }}
+    </div>
+{% endfor %}

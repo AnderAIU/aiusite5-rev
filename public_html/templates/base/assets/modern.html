@@ -1,0 +1,28 @@
+{% extends 'base/assets/row.html' %}
+{% block outblock %}
+{% for modernui in row.ModernBlock_set.all %}
+    {% load static %}
+    <div class="col-12 col-md-8 mx-0 my-0 overflow-hidden">
+        <div class="row h-100">
+        {% for mitem in modernui.ModernItem_set.all %}
+            <div class="col-12 col-md-6 px-2 py-2 aiumodern">
+                <a href="{{ mitem.link_url }}">
+                {% if mitem.title and mitem.title.strip %}
+                    <h5 class="h5">{{ mitem.title }}</h5>
+                {% endif %}
+                    <div class="backgr"></div>
+                    {% if mitem.background %}
+                    <img src={{ mitem.background.url }}>
+                    {% else %}
+                    <img src={% static 'images/budget.jpg' %}>
+                    {% endif %}
+                </a>
+            </div>
+        {% endfor %}
+        </div>
+    </div>
+    <div class="col-12 col-md-4 px-2 py-2 aiupos">
+        {{ pos.pos_code|safe }}
+    </div>
+{% endfor %}
+{% endblock %}

@@ -1,0 +1,10 @@
+{% for aiudiagr in aiublock.get_diagr %}
+<div class="container aiudiagr px-5 py-1">
+    {% if aiudiagr.title and aiudiagr.title.strip %}
+    <div class="row pt-3">
+        <h2 class="aiu-custom-title"><span class="h5">{{ aiudiagr.title }}</span></h2>
+    </div>
+    {% endif %}
+    {% block drows2 %}{% endblock %}
+</div>
+{% endfor %}

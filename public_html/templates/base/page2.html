@@ -1,0 +1,29 @@
+{% extends 'base/base.html' %}
+{% block title_t %}{{ pos.name_site }}{% endblock %}
+{% block title_menu %}{{ pos.name_site }}{% endblock %}
+{% block textpage %}
+    {{ aiupages.last.public_name|upper }}
+{% endblock %}
+{% block pagecontent %}
+{% for page1 in aiupages %}
+    {% for aiucontainer in page1.get_containers %}
+        <div class="col-12 container-fluid" id="aiucontainerorder-{{ aiucontainer.first.order }}">
+        {% if aiucontainer.title and aiucontainer.title.strip %}
+            <div class="row">
+                <h2 class="aiu-custom-title"><span class="h5">{{ aiucontainer.first.title }}</h5></h2>
+            </div>
+        {% endif %}    
+        {% for aiublock in aiucontainer.get_block %}
+            <div class="row justify-content-end" id="aiuroworder-{{ aiublock.order }}">
+                {% if aiublock.title and aiublock.title.strip %}<h3 class="aiu-custom-title">{{ aiublock.title }}</h3>{% endif %}
+                {% include 'base/blocks/textblock.html' %}
+                {% include 'base/blocks/contact.html' %}
+                {% include 'base/blocks/modern.html' %}
+                {% include 'base/blocks/diagram-col.html' %}
+                {% include 'base/blocks/extendedfiles.html' %}
+            </div>
+        {% endfor %}
+        </div>
+    {% endfor %}
+{% endfor %}
+{% endblock %}

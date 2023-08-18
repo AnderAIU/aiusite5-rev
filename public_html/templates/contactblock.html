@@ -1,0 +1,27 @@
+<div class="container aiucontact">
+    <div class="row">
+        <h2>{{ container.title }}</h2>
+    </div>
+    <div class="row">
+        <h3>{{ block.title }}</h3>
+        <div class="col-12">
+            {{ contactblock.col01html }}
+        </div>
+        <div class="col-12 postaddr">
+            <h3 class="h3">Почтовый адрес</h3>
+            <p>
+                {{ contatcblock.post_addr }}
+            </p>
+            <h3 class="h3">Руководство</h3>
+            <p>
+                {{ contatcblock.seo_pr }}
+            </p>
+            <br>
+            <p>
+                <span class="phone">{{ contactblock.tel }}</span>
+                Факс:
+                <span class="fax">{{ contactblock.tel }}</span>
+            </p>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,47 @@
+{% for aiuextfiles in aiublock.get_extfiles %}
+    {% for menutag in aiuextfiles.tagmenu.all %}
+    {% if not menutag.sidebar %}
+    <ul class="aiunav nav justify-content-end" id="{{ menutag.slug }}">
+        {% for tagitem in menutag.get_itemtag %}
+        <li class="nav-item">
+            <a href="#{{ tagitem.slug }}" class="nav-link">{{ tagitem.titleitem }}</a>
+        </li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    {% endfor %}
+    <div class="container-fluid px-0 mx-0 aiubudget">
+        <div class="row justify-content-between">
+            <div class="col-12 col-md-2">
+                <!--sidebar-->
+                {% for menutag in aiuextfiles.tagmenu.all %}
+                {% if menutag.sidebar %}
+                <ul class="aiunav aiusidebar nav" id="{{ menutag.slug }}">
+                    {% for tagitem in menutag.get_itemtag %}
+                    <li class="nav-item w-100">
+                        <a href="#{{ tagitem.slug }}" class="nav-link">{{ tagitem.titleitem }}</a>
+                    </li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+                {% endfor %}
+            </div>
+            <div class="col-12 col-md-10" id="aiufiles">
+                <!--files-->
+                <div class="w-100 px-3 py-3 aiucomment justify-content-center align-items-center">
+                    <p class="h5">На данной странице включен режим загрузки по наведению - Наведите курсор на выбираемые пункты (год, район, необходимый раздел) и будут загружены нужные файлы (без перезагрузки и клика).</p>
+                </div>
+            </div>
+            <div class="aiuviewer col-md-5">
+                <div class="container-fluid">
+                        <button class="btn aiuviewer__close float-end mx-2" role="button">Закрыть</button>
+                    <div class="row">
+                        <div class="w-100" id="aiuviewer">
+                            <!-- load here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endfor %}

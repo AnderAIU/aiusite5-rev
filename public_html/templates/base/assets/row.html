@@ -1,0 +1,11 @@
+{% extends 'base/assets/container.html' %}
+{% block outrows %}
+
+{% for row in cont.Blocks_set.all %}
+<div class="row justify-content-end" id="aiuroworder-{{ row.order }}">
+    {% if row.title and row.title.strip %}<h3 class="aiu-custom-title">{{ row.title }}</h3>{% endif %}
+    {% block outblock %}{% endblock %}
+</div>
+{% endfor %}
+
+{% endblock %}

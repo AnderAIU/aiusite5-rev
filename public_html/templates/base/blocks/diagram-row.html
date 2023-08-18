@@ -1,0 +1,9 @@
+{% extends 'base/blocks/diagram.html' %}
+{% block drows2 %}
+{% for drows in aiudiagr.get_row %}
+    <div class="row justify-content-center">
+        {% if drows.title and drows.title.strip %}<h3 class="aiu-diagrow-title h4">{{ drows.title }}</h3>{% endif %}
+        {% block rowitem %}{% endblock %}
+    </div>
+    {% endfor %}
+{% endblock %}

@@ -1,0 +1,15 @@
+{% for page1 in aiupages %}
+<pre>{{ page1.public_name }}</pre>
+    {% for cont in page1.Containers_set.all %}
+
+<div class="container-fluid" id="aiucontainerorder-{{ cont.order }}">
+    {% if cont.title and cont.title.strip %}
+    <div class="row">
+        <h2 class="aiu-custom-title"><span class="h5">{{ cont.first.title }}</h5></h2>
+    </div>
+    {% endif %}
+    {% block outrows %}{% endblock %}
+</div>
+
+    {% endfor %}
+{% endfor %}

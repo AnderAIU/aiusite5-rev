@@ -1,0 +1,19 @@
+{% for callblock in row.ContactBlock_set.all %}
+<div class="container aiucontact px-0 py-0">
+    <div class="row">
+        <div class="col-12 col-md-6">
+            {{ callblock.col01html|safe }}
+        </div>
+        <div class="col-12 col-md-6">
+            <p class="h5">Почтовый адрес</p>
+            <p>{{ callblock.post_addr }}</p>
+            <p class="h5">Руководство</p>
+            <p>{{ callblock.seo_pr }}</p>
+            <p>{{ callblock.tel }}</p>
+            <p class="py-0">Факс</p>
+            <p>{{ callblock.fax }}</p>
+            <p>e-mail <a href="mailto:{{ callblock.email }}">{{ callblock.email }}</a></p>
+        </div>
+    </div>
+</div>
+{% endfor %}

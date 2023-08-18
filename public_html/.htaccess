@@ -1,0 +1,20 @@
+PassengerEnabled On
+PassengerPython /home/a/anderhul/anderaiu.su/env/bin/python
+#SetEnv LD_LIBRARY_PATH="/home/a/anderhul/anderaiu.su/env/lib"
+<Files "*.py">
+    Require all denied
+</Files>
+<Files "*.sqlite3">
+    Require all denied
+</Files>
+<Files "*.yml">
+    Require all denied
+</Files>
+<Files "*.php">
+    Require all denied
+</Files>
+<Files "*.html">
+    Require all denied
+</Files>
+ErrorDocument 404 /?name=404
+ErrorDocument 403 /?name=404

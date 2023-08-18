@@ -1,0 +1,9 @@
+{% extends 'base/base.html' %}
+{% block title_t %}{{ pos.name_site }}{% endblock %}
+{% block title_menu %}{{ pos.name_site }}{% endblock %}
+{% block textpage %}
+    {{ aiupages.last.public_name|upper }}
+{% endblock %}
+{% block pagecontent %}
+{{ html|safe }}
+{% endblock %}

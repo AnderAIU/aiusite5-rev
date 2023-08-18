@@ -1,0 +1,8 @@
+<div class="container-fluid" id="aiucontainerorder-{{ aiucontainer.first.order }}">
+    {% if aiucontainer.title and aiucontainer.title.strip %}
+    <div class="row">
+        <h2 class="aiu-custom-title"><span class="h5">{{ aiucontainer.first.title }}</h5></h2>
+    </div>
+    {% endif %}
+    {% block outrows %}{% endblock %}
+</div>

@@ -1,0 +1,25 @@
+{% for aiumodern in aiublock.get_modern %}
+    {% load static %}
+    <div class="col-12 col-md-9 mx-0 my-0 overflow-hidden">
+        <div class="row h-100">
+        {% for aiumodernitem in aiumodern.get_items %}
+            <div class="col-12 col-md-4 px-2 py-2 aiumodern">
+                <a href="{{ aiumodernitem.link_url }}">
+                {% if aiumodernitem.title and aiumodernitem.title.strip %}
+                    <h5 class="h5">{{ aiumodernitem.title }}</h5>
+                {% endif %}
+                    <div class="backgr"></div>
+                    {% if aiumodernitem.background %}
+                    <img src={{ aiumodernitem.background.url }}>
+                    {% else %}
+                    <img src={% static 'images/budget.jpg' %}>
+                    {% endif %}
+                </a>
+            </div>
+        {% endfor %}
+        </div>
+    </div>
+    <div class="col-12 col-md-3 px-2 py-2 aiupos">
+        {{ pos.pos_code|safe }}
+    </div>
+{% endfor %}
