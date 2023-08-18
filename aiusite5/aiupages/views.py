@@ -22,29 +22,22 @@ def outMac(request):
     print('Browser' + request.META.get('HTTP_HOST'))
     return 'Connect clients IP:' + ip
 
-def convertfile(dirfile):
+def convertfile11(dirfile):
     basurl = 'http://62.217.177.31:9980/lool/convert-to/pdf'
+    dirfile1 = '../public_html/' + dirfile
     filesin = {
-        "data": open(dirfile,'rb'),
+        "data": open(dirfile1,'rb'),
     }
     r = requests.post(basurl, files=filesin)
-    #print(r)
+    print(r)
+    print(r.content)
+    print(r.text)
     try:
         with open(dirfile+".pdf", "wb") as f:
             f.write(r.content)
         return dirfile+".pdf"
     except:
         return ''
-    '''
-    try:
-        with open("media/response.pdf", "rb") as f:
-            file_data = f.read()
-        response = HttpResponse(file_data, content_type='application/pdf')
-        response['Content-Disposition'] = 'attachment; filename="response.pdf"'
-    except IOError:
-        response = HttpResponseNotFound('<h1>Файл не сконвертирован</h1>')
-    return response
-    '''
 
 class PageView(ListView):
     model = Pages
@@ -124,7 +117,7 @@ def get_files(request):
     tags = TagsItem.objects.filter(slug__in=inres["tags"])
     filesout = FilesUpload.objects.all()
     if bool(inres["slug"].strip()):
-        pagesfile = Pages.objects.filter(slug__in=inres["slug"])
+        pagesfile = Pages.objects.filter(slug=inres["slug"])
         for pg in pagesfile.all():
             filesout = filesout.filter(pageid=pg)
     for tag1 in tags.all():

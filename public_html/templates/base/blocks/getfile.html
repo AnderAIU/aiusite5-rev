@@ -36,10 +36,6 @@
         <div class="col-12 col-md-1">
             {% if getfile.filetype == 'application/pdf' %}
             <span class="aiufile__openview" mimefile="{{ getfile.filetype }}" ophref="{{ getfile.filesUrl.url }}"><img src="{% static 'icons/view1.svg' %}" class="px-2 py-2"></span>
-            {% elif getfile.filetype == 'application/msword' %}
-            <span class="aiufile__openview" mimefile="{{ getfile.filetype }}" ophref="{{ getfile.filesUrl.url }}"><img src="{% static 'icons/view1.svg' %}" class="px-2 py-2"></span>
-            {% elif getfile.filetype == 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' %}
-            <span class="aiufile__openview" mimefile="{{ getfile.filetype }}" ophref="{{ getfile.filesUrl.url }}"><img src="{% static 'icons/view1.svg' %}" class="px-2 py-2"></span>
             {% endif %}
             <a class="aiufile__link" href="{{ getfile.filesUrl.url }}" target="_blank"><img src="{% static 'icons/download.svg' %}" class="px-2 py-2"></a>
         </div>
