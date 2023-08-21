@@ -17,7 +17,7 @@
         </div>
     </div>
     <div class="container-fluid px-0 mx-0 aiubudget">
-        <div class="row justify-content-between">
+        <div class="row justify-content-between position-relative">
             <div class="col-12 col-md-2">
                 <!--sidebar-->
                 {% for menutag in aiuextfiles.tagmenu.all %}
@@ -58,8 +58,8 @@
                     </div>
                 </div>
             </div>
-            <div class="aiuviewer col-md-5">
-                <div class="container-fluid">
+            <div class="aiuviewer px-0 position-absolute col-12 col-md-auto">
+                <div class="container-fluid px-0">
                         <button class="btn aiuviewer__close float-end mx-2" role="button">Закрыть</button>
                     <div class="row">
                         <div class="w-100" id="aiuviewer">

@@ -138,10 +138,10 @@ def openfile(request):
     template1 = Template('{% extends "base/blocks/opendoc.html" %}')
     template2 = Template('{{ aiuopen }}')
     if (inres['mimefile'] == 'application/pdf'):
-        context['aiuopen'] = inres['fileurl']
+        context['aiuopen'] = '../public_html/' + inres['fileurl']
     elif (inres['mimefile'] == 'application/msword' or inres['mimefile'] == 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'):
         print('Convertation ' + inres['fileurl'] + '....')
-        context['aiuopen'] = convertfile(inres['fileurl'][1:])
+        context['aiuopen'] = ''
         print(context['aiuopen'])
     data = []
     data.append({
