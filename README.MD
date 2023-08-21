@@ -17,9 +17,11 @@ Properties:
 3) Extensions parameters for site
 4) Loaders dynamics content and page (dynamic html, css, js(experiments parameters) )
 
-Work in Debug = True
+Work in Debug = True, in process developing....
 
-Process developing....
+Install:
+1) For docker image install (test)
+2) Local run (python and components)
 
 Powered by @AnderAIU
 
