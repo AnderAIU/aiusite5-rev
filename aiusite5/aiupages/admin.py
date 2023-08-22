@@ -27,8 +27,19 @@ class TagsMenuAdmin(nested_admin.NestedModelAdmin):
 class FilesUploadAdmin(nested_admin.NestedModelAdmin):
     extra = 0
     model = FilesUpload
+    list_display = ('title', 'filetype', '_tagsid', '_filesurl')
+    list_filter = ['filetype']
 
-#Element in Column Diagram
+    def formfield_for_manytomany(self, db_field, request, **kwargs):
+        kwargs["queryset"] = TagsItem.objects.all()
+        return super(FilesUploadAdmin, self).formfield_for_manytomany(db_field, request, **kwargs)
+
+    def _filesurl(self, row):
+        return row.filesUrl.url
+
+    def	_tagsid(self, row):
+        return ', \n\r'.join([x.titleitem for x in row.tagsid.all()])
+
 class DiagrElemInline(nested_admin.NestedTabularInline):
     extra = 0
     model = DiagrElement
