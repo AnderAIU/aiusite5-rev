@@ -23,6 +23,8 @@
             <img src="{% static 'icons/rar.png' %}" class="img-fluid">
             {% elif getfile.filetype == 'application/octet-stream' %}
             <img src="{% static 'icons/rar.png' %}" class="img-fluid">
+            {% elif getfile.filetype == 'application/vnd.ms-excel' %}
+            <img src="{% static 'icons/xls.png' %}" class="img-fluid">
             {% else %}
             <img src="{% static 'icons/non.png' %}" class="img-fluid">
             {% endif %}            

@@ -87,14 +87,14 @@ SECURE_CROSS_ORIGIN_OPENER_POLICY = 'none'
 
 DATABASES = {
     'default': {
-        #'ENGINE': 'django.db.backends.sqlite3',
-        #'NAME': BASE_DIR / 'db.sqlite3',
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'aiusite5',
-        'USER': 'postgres',
-        'PASSWORD': 'odmirall231OD!',
-        'HOST': '62.217.177.31',
-        'PORT': '5432',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+        #'ENGINE': 'django.db.backends.postgresql',
+        #'NAME': 'aiusite5',
+        #'USER': 'postgres',
+        #'PASSWORD': 'odmirall231OD!',
+        #'HOST': '62.217.177.31',
+        #'PORT': '5432',
     }
 }
 

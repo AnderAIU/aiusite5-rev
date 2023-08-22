@@ -23,21 +23,14 @@ def outMac(request):
     return 'Connect clients IP:' + ip
 
 def convertfile11(dirfile):
-    basurl = 'http://62.217.177.31:9980/lool/convert-to/pdf'
+    basurl = 'http://docs.anderaiu.su/convertpdf'
     dirfile1 = '../public_html/' + dirfile
     filesin = {
         "data": open(dirfile1,'rb'),
     }
     r = requests.post(basurl, files=filesin)
-    print(r)
-    print(r.content)
-    print(r.text)
-    try:
-        with open(dirfile+".pdf", "wb") as f:
-            f.write(r.content)
-        return dirfile+".pdf"
-    except:
-        return ''
+    print(json.loads(r.body))
+    return json.loads(r.body)
 
 class PageView(ListView):
     model = Pages
@@ -138,15 +131,17 @@ def openfile(request):
     template1 = Template('{% extends "base/blocks/opendoc.html" %}')
     template2 = Template('{{ aiuopen }}')
     if (inres['mimefile'] == 'application/pdf'):
-        context['aiuopen'] = '../public_html/' + inres['fileurl']
+        context['aiuopen'] = inres['fileurl']
+        inres['viewer'] = template1.render(context)
+        inres['filesurl'] = template2.render(context)
     elif (inres['mimefile'] == 'application/msword' or inres['mimefile'] == 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'):
         print('Convertation ' + inres['fileurl'] + '....')
-        context['aiuopen'] = ''
+        inres1 = convertfile11('../public_html/' + inres['fileurl'])
         print(context['aiuopen'])
     data = []
     data.append({
-        'viewer': template1.render(context),
-        'filesurl' : template2.render(context),
+        'viewer': inres['viewer'],
+        'filesurl' : inres['filesurl'],
     })
     return JsonResponse(data, safe=False)
 

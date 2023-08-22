@@ -141,6 +141,7 @@ function openDoc(fileurl) {
         $('#aiuviewer').empty();
         $('#aiuviewer').append(post.viewer);
         geturlsto(post.filesurl);
+        console.log(post.filesurl);
       });
 
     },
@@ -242,6 +243,7 @@ function getPosts(name_page) {
               pagehead = post.header;
               tmp = post.fullmenu;
               reloadSechrefs(post.title);
+              //window.location.hash = post.title;
               $('#aiuheader .h1').empty();
               $('#aiuheader .h1').append(pagehead);
               $('#aiupages').empty();
