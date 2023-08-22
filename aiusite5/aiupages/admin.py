@@ -29,10 +29,7 @@ class FilesUploadAdmin(nested_admin.NestedModelAdmin):
     model = FilesUpload
     list_display = ('title', 'filetype', '_tagsid', '_filesurl')
     list_filter = ['filetype']
-
-    def formfield_for_manytomany(self, db_field, request, **kwargs):
-        kwargs["queryset"] = TagsItem.objects.all()
-        return super(FilesUploadAdmin, self).formfield_for_manytomany(db_field, request, **kwargs)
+    search_fields = ['title']
 
     def _filesurl(self, row):
         return row.filesUrl.url
