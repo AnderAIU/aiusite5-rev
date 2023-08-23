@@ -17,6 +17,7 @@ class color_profile(models.Model):
     background_color = ColorField(format="hexa", verbose_name="Фон сайта")
     pos_code = models.TextField(default="", verbose_name="Код для интеграции ПОС Госуслуги")
     onmenu = models.BooleanField(default=False, verbose_name="Меню на странице", help_text="Отключить меню/включить")
+    yandex_meta = models.CharField(default="", max_length=255, verbose_name="ID верификации в Яндексе")
 
     class Meta:
         verbose_name = 'Глобальные настройки сайта'

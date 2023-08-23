@@ -21,6 +21,9 @@
     <link rel="icon" type="image/png" sizes="16x16" href="{% static '/favicon/favicon-16x16.png' %}">
     <link rel="manifest" href="{% static '/favicon/site.webmanifest' %}">
     <link rel="stylesheet" href="css/global.css" type="text/css" />
+    {% if pos.yandex_meta %}
+    <meta name="yandex-verification" content="{{ pos.yandex_meta }}" />
+    {% endif %}
   </head>
   <body>
     <div class="offcanvas offcanvas-start w-sm-25 w-md-100 bg-aiu-pres" tabindex="-1" id="{% if pos.onmenu %}offcanvas{% endif %}" data-bs-keyboard="false" data-bs-backdrop="false">  
