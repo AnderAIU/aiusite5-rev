@@ -40,6 +40,8 @@ function initEvents() {
 function initPDFRenderer(url) {
   // const url = 'test1.pdf'; // replace with your pdf location
   let option  = { url};
+  pdfjsLib.disableAutoFetch = true;
+  pdfjsLib.disableStream = true;
   pdfjsLib.getDocument(option).promise.then(pdfData => {
       totalPages = pdfData.numPages;
       let pagesCounter= document.getElementById('total_page_num');
@@ -55,9 +57,9 @@ function renderPage(pageNumToRender = 1, scale = 1) {
   document.getElementById('current_page_num').textContent = pageNumToRender;
   pdf.getPage(pageNumToRender).then(page => {
       document.getElementById("loader").style.display = "none";
-      const viewport = page.getViewport({scale :1});
+      var viewport = page.getViewport({scale :1});
       canvas.height = viewport.height;
-      canvas.width = viewport.width;  
+      canvas.width = viewport.width;
       let renderCtx = {canvasContext ,viewport};
       page.render(renderCtx).promise.then(()=> {
           isPageRendering = false;
@@ -329,7 +331,7 @@ $("#aiupages").on('click', ".aiucollapseopen", function(e){
   }
 });
 
-$("#aiupages").on('mouseenter', ".aiunav a", function(e) {
+$("#aiupages").on('mouseenter', ".aiunav.aiutaghead a", function(e) {
   e.preventDefault();
   secid = $(this).parent().parent().attr('id');
   $('#' + secid + ' a').blur();
@@ -348,21 +350,40 @@ $("#aiupages").on('mouseenter', ".aiunav a", function(e) {
   }
 });
 
-$("#aiupages").on('click', '.aiufile__openview img', function(e) {
+$("#aiupages").on('focus', ".aiunav.aiutagside a", function(e) {
+  e.preventDefault();
+  secid = $(this).parent().parent().attr('id');
+  $('#' + secid + ' a').blur();
+  $('#' + secid + ' a').removeClass('active');
+  if (getpostloaded) {
+    $(this).addClass('active');
+    $(this).focus();
+    myobj = { 'tags' : $('.aiunav a.active').map(function() {
+        str = $(this).attr('href');
+        return str.replace(/\*|%|#|&|\$/g, "");
+      }).get(),
+      'slug' : sechrefs,
+    }
+    console.log(JSON.stringify(myobj));
+    getFiles(myobj);
+  }
+});
+
+$("#aiupages").on('click', '.aiufile__openview', function(e) {
   e.preventDefault();
   myobj = {
-    'fileurl' : $(this).parent().attr('ophref'),
-    'mimefile' : $(this).parent().attr('mimefile'),
+    'fileurl' : $(this).attr('ophref'),
+    'mimefile' : $(this).attr('mimefile'),
   };
   openDoc(myobj);
   $('#aiutablefiles').removeClass('col-md-10');
-  $('#aiutablefiles').addClass('col-md-6');
+  $('#aiutablefiles').addClass('col-md-5');
   $('.aiuviewer').addClass('active');
 });
 
 $("#aiupages").on('click', '.aiuviewer .aiuviewer__close', function(e) {
   e.preventDefault();
   $('.aiuviewer').removeClass('active');
-  $('#aiutablefiles').removeClass('col-md-6');
+  $('#aiutablefiles').removeClass('col-md-5');
   $('#aiutablefiles').addClass('col-md-10');
 });

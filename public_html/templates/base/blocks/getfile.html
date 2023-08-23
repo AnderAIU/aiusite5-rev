@@ -2,7 +2,7 @@
 {% load static %}
 <div class="aiufile container-fluid position-relative">
     <div class="row align-items-center">
-        <div class="col-4 col-md-1">
+        <div class="col-4 col-md-1 aiufiletype">
             {% if getfile.filetype == 'application/pdf' %}
             <img src="{% static 'icons/pdf.png' %}" class="img-fluid">
             {% elif getfile.filetype == 'application/msword' %}
@@ -30,16 +30,20 @@
             {% endif %}            
         </div>
         <div class="aiufilesname col-8">
+            {% if getfile.filetype == 'application/pdf' %}
+            <span class="aiufile__openview" mimefile="{{ getfile.filetype }}" ophref="{{ getfile.filesUrl.url }}">{{ getfile.title }}</span>
+            {% else %}
             <span>{{ getfile.title }}</span>
+            {% endif %}
         </div>
         <div class="aiufilesdate col-12 col-md-2">
             <span>{{ getfile.date_pub|date:"d-m-Y" }}</span>
         </div>
         <div class="col-12 col-md-1">
-            {% if getfile.filetype == 'application/pdf' %}
-            <span class="aiufile__openview" mimefile="{{ getfile.filetype }}" ophref="{{ getfile.filesUrl.url }}"><img src="{% static 'icons/view1.svg' %}" class="px-2 py-2"></span>
-            {% endif %}
             <a class="aiufile__link" href="{{ getfile.filesUrl.url }}" target="_blank"><img src="{% static 'icons/download.svg' %}" class="px-2 py-2"></a>
+            {% if getfile.filetype == 'application/pdf' %}
+            <span class="aiufile__openview d-md-none" mimefile="{{ getfile.filetype }}" ophref="{{ getfile.filesUrl.url }}"><img src="{% static 'icons/view1.svg' %}" class="px-2 py-2"></span>
+            {% endif %}
         </div>
     </div>
 </div>

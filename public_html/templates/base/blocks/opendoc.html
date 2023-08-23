@@ -1,9 +1,20 @@
-<div id="loader"><br><br><br>Загрузка ......</div>
-<canvas id="pdf_canvas"></canvas>
-<div class="view-panel">
-    <button class="prev_page" id="prev_page"><</button>
-    <button class="next_page" id="next_page">></button>
-    <span id="current_page_num"></span>
-    /
-    <span id="total_page_num"></span>         
+<div class="container view-panel">
+    <div class="row">
+        <div class="col-12 d-flex justify-content-between">
+            <button class="prev_page py-1" id="prev_page"><</button>
+            <span id="current_page_num"></span>
+            /
+            <span id="total_page_num"></span>
+            <button class="next_page py-1" id="next_page">></button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            {% load static %}
+            <div id="loader">
+                <img class="w-100" src="{% static '/images/load.gif' %}">
+            </div>
+            <canvas id="pdf_canvas" class="w-100"></canvas>
+        </div>
+    </div>
 </div>
