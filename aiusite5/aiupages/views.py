@@ -87,6 +87,7 @@ def get_param(request):
         name_page = "home"
     context = Context()
     context['aiupages'] = Pages.objects.filter(slug=name_page)
+    print(list(Pages.objects.all().values_list('slug', flat=True)))
     if not(context['aiupages']):
         name_page = "404"
         context['aiupages'] = Pages.objects.filter(slug=name_page)

@@ -17,6 +17,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.conf.urls import include
+from django.contrib.sitemaps.views import sitemap
+from .sitemaps import StaticViewSitemap
 
 from django.conf.urls.static import static
 from django.conf import settings
@@ -25,10 +27,15 @@ from aiusite5.views import page_index, pageNotFound
 from aiupages.views import *
 from aiucolors.views import css_renderer, js_renderer
 from convertpdf.views import *
+from .views import pagesroute
 
 from django.views.generic import TemplateView
 
 handler404 = pageNotFound
+
+sitemaps = {
+    'static': StaticViewSitemap,
+}
 
 urlpatterns = [
     path('', PageView.as_view(), name="home"),
@@ -39,7 +46,9 @@ urlpatterns = [
     path('js-<str:slug>/<str:filename>.js', js_renderer),
     path('get_param/', get_param, name='get_param'),
     path('doc/', openfile, name="openfile"),
+    path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
     #path('pdffile/', page_test, name="pdffile"),
+    path('<str:extpages>/', pagesroute),
 ]
 
 if settings.DEBUG:

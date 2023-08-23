@@ -8,6 +8,7 @@ from aiupages.models import *
 from aiupages.views import pageshtml
 from aiucolors.models import *
 from aiuextended.models import AiuExtParam
+from django.contrib import admin
 #import pdb
 #from logs.models import Post
 
@@ -32,3 +33,17 @@ def getMac(request):
     response = render(request, Template('OK'), context)
     response.status_code = 200
     return response
+
+def pagesroute(request, extpages):
+    print(extpages)
+    print(list(Pages.objects.all().values_list('slug', flat=True)))
+    if (any(extpages in s for s in list(Pages.objects.all().values_list('slug', flat=True)))):
+        response = redirect('/?name=' + extpages)
+        print('/?name=' + extpages)
+        response.status_code = 301
+        return response
+    else:
+        response = redirect('/?name=404')
+        print('redirect 404')
+        response.status_code = 200
+        return response
