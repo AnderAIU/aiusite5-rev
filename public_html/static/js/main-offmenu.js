@@ -2,6 +2,7 @@ var sechrefs="";
 var enReload=false;
 var fmenu=false;
 var geturls;
+var getpostloaded=true;
 //var menuOffcanvas = document.getElementById('offcanvas');
 //const bsmenuOffcanvas = new bootstrap.Offcanvas(menuOffcanvas);
 //const windowInnerHeight = document.documentElement.clientHeight;
@@ -13,6 +14,15 @@ let pageRenderingQueue = null;
 let canvasContext;
 let totalPages;
 let currentPageNum = 1;
+
+function GPendload(b) {
+  getpostloaded = b;
+  if (getpostloaded) {
+    console.log('Loaded');
+  } else {
+    console.log('Not load');
+  }
+}
 
 function geturlsto(urls) {
   geturls = urls;
@@ -133,27 +143,26 @@ function openDoc(fileurl) {
     data: JSON.stringify(fileurl),
     beforeSend: function() {
       $('#aiuviewer').empty();
-      $('#aiuviewer').append('<p class="h5 pt-3 mt-3 text-center">Конвертация файла, ожидание загрузки</p>');
-      $('#aiuviewer').append('<div class="tenor-gif-embed" data-postid="20214936" data-share-method="host" data-aspect-ratio="7.62" data-width="100%"></div> <script type="text/javascript" async src="/static/js/animate/embed.js"></script>');
+      GPendload(false);
+      // intial params
+      isPageRendering= false;
+      pageRenderingQueue = null;
+      //$('#aiuviewer').append('<p class="h5 pt-3 mt-3 text-center">Конвертация файла, ожидание загрузки</p>');
+      //$('#aiuviewer').append('<div class="tenor-gif-embed" data-postid="20214936" data-share-method="host" data-aspect-ratio="7.62" data-width="100%"></div> <script type="text/javascript" async src="/static/js/animate/embed.js"></script>');
     },
     success: function(response) {
       $.each(response, function(index, post) {
         $('#aiuviewer').empty();
         $('#aiuviewer').append(post.viewer);
         geturlsto(post.filesurl);
-        console.log(post.filesurl);
+        canvas = document.getElementById('pdf_canvas');
+        canvasContext = canvas.getContext('2d');
+        initEvents();
       });
-
     },
     complete: function() {
-      // intial params
-      console.log(geturls);
-      isPageRendering= false;
-      pageRenderingQueue = null;
-      canvas = document.getElementById('pdf_canvas');
-      canvasContext = canvas.getContext('2d');
-      initEvents();
       initPDFRenderer(geturls);
+      GPendload(true);
     },
   });
 }
@@ -168,22 +177,93 @@ function getMenu(name_page) {
     dataType: 'json',
     beforeSend: function() {
       // preloader on
+      GPendload(false);
     },
     success: function(response) {
-        $.each(response, function(index, post) {
-          tmp = post.fullmenu;
-          if (tmp=='full') {
-            $('#aiupages').removeClass('full');
-          } else {
-            $('#aiupages').addClass('full');
-            //console.log('resp---0-', tmp);
-          }
-        });
+      $.each(response, function(index, post) {
+        tmp = post.fullmenu;
+        if (tmp=='full') {
+          $('#aiupages').removeClass('full');
+        } else {
+          $('#aiupages').addClass('full');
+          //console.log('resp---0-', tmp);
+        }
+      });
     },
     complete: function() {
       // here
       result = tmp;
       return result;
+      GPendload(true);
+    },
+  });
+}
+
+function getFiles(tagsfile) {
+  info = [];
+  $.ajax({
+    url: '/get_files/',
+    type: 'post',
+    headers: {'X-CSRFToken': csrftoken },
+    dataType: 'json',
+    data: JSON.stringify(tagsfile),
+    beforeSend: function() {
+      $('#aiufiles').empty();
+      GPendload(false);
+    },
+    success: function(response) {
+      $.each(response, function(index, post) {
+        $('#aiufiles').empty();
+        $('#aiufiles').append(post.files);
+      });
+    },
+    complete: function() {
+      GPendload(true);
+    },
+  });
+}
+
+function getPosts(name_page) {
+  $.ajax({
+    url: '/get_pages?name='+name_page,
+    type: 'get',
+    dataType: 'json',
+    beforeSend: function() {
+      enReload = false;
+      sechrefs = name_page;
+      $('#aiuheader .h1').empty();
+      $('#aiupages').empty();
+      $('#aiuheader .h1').append("Загрузка страницы...");
+      // preloader on
+      GPendload(false);
+    },
+    success: function(response) {
+      $.each(response, function(index, post) {
+        pagecont = post.contenthtml;
+        pagehead = post.header;
+        tmp = post.fullmenu;
+        reloadSechrefs(post.title);
+        //window.location.hash = post.title;
+        $('#aiuheader .h1').empty();
+        $('#aiuheader .h1').append(pagehead);
+        $('#aiupages').empty();
+        $('#aiupages').append(pagecont);
+        if (tmp=='full') {
+          //fullmenusite(1);
+          $('#aiupages').removeClass('full');
+          //console.log('resp---1-', tmp);
+        } else {
+          //fullmenusite(0);
+          $('#aiupages').addClass('full');
+          //console.log('resp---0-', tmp);
+        }
+      });
+    },
+    complete: function() {
+      enReload = true;
+      GPendload(true);
+      //enReload = false;
+      // preloader off
     },
   });
 }
@@ -202,74 +282,11 @@ function reloadSechrefs(s) {
   console.log(window.sechrefs);
 }
 
-function getFiles(tagsfile) {
-  info = [];
-  $.ajax({
-    url: '/get_files/',
-    type: 'post',
-    headers: {'X-CSRFToken': csrftoken },
-    dataType: 'json',
-    data: JSON.stringify(tagsfile),
-    beforeSend: function() {
-      $('#aiufiles').empty();
-    },
-    success: function(response) {
-      $.each(response, function(index, post) {
-        $('#aiufiles').empty();
-        $('#aiufiles').append(post.files);
-      });
-    },
-    complete: function() {
-    },
-  });
-}
-
-function getPosts(name_page) {
-  $.ajax({
-      url: '/get_pages?name='+name_page,
-      type: 'get',
-      dataType: 'json',
-      beforeSend: function() {
-        enReload = false;
-        sechrefs = name_page;
-        $('#aiuheader .h1').empty();
-        $('#aiupages').empty();
-        $('#aiuheader .h1').append("Загрузка страницы...");
-        // preloader on
-      },
-      success: function(response) {
-          $.each(response, function(index, post) {
-              pagecont = post.contenthtml;
-              pagehead = post.header;
-              tmp = post.fullmenu;
-              reloadSechrefs(post.title);
-              //window.location.hash = post.title;
-              $('#aiuheader .h1').empty();
-              $('#aiuheader .h1').append(pagehead);
-              $('#aiupages').empty();
-              $('#aiupages').append(pagecont);
-              if (tmp=='full') {
-                //fullmenusite(1);
-                $('#aiupages').removeClass('full');
-                //console.log('resp---1-', tmp);
-              } else {
-                //fullmenusite(0);
-                $('#aiupages').addClass('full');
-                //console.log('resp---0-', tmp);
-              }
-          });
-      },
-      complete: function() {
-        enReload = true;
-        //enReload = false;
-        // preloader off
-      },
-  });
-}
-
 $(function(){
   $("button.aiumenu2").click(function() {
-    getPosts('home');
+    if (getpostloaded) {
+      getPosts('home');
+    }
   });
   $(".offcanvas").mouseleave(function(){
     getMenu(sechrefs);
@@ -315,16 +332,20 @@ $("#aiupages").on('click', ".aiucollapseopen", function(e){
 $("#aiupages").on('mouseenter', ".aiunav a", function(e) {
   e.preventDefault();
   secid = $(this).parent().parent().attr('id');
+  $('#' + secid + ' a').blur();
   $('#' + secid + ' a').removeClass('active');
-  $(this).addClass('active');
-  myobj = { 'tags' : $('.aiunav a.active').map(function() {
-    str = $(this).attr('href');
-    return str.replace(/\*|%|#|&|\$/g, "");
-  }).get(),
-  'slug' : sechrefs,
+  if (getpostloaded) {
+    $(this).addClass('active');
+    $(this).focus();
+    myobj = { 'tags' : $('.aiunav a.active').map(function() {
+        str = $(this).attr('href');
+        return str.replace(/\*|%|#|&|\$/g, "");
+      }).get(),
+      'slug' : sechrefs,
+    }
+    console.log(JSON.stringify(myobj));
+    getFiles(myobj);
   }
-  console.log(JSON.stringify(myobj));
-  getFiles(myobj);
 });
 
 $("#aiupages").on('click', '.aiufile__openview img', function(e) {
@@ -334,21 +355,14 @@ $("#aiupages").on('click', '.aiufile__openview img', function(e) {
     'mimefile' : $(this).parent().attr('mimefile'),
   };
   openDoc(myobj);
+  $('#aiutablefiles').removeClass('col-md-10');
+  $('#aiutablefiles').addClass('col-md-6');
   $('.aiuviewer').addClass('active');
-  $('#aiufiles').removeClass('col-md-10');
-  $('#aiufiles').addClass('col-md-5');
-
 });
+
 $("#aiupages").on('click', '.aiuviewer .aiuviewer__close', function(e) {
   e.preventDefault();
   $('.aiuviewer').removeClass('active');
-  $('#aiufiles').removeClass('col-md-5');
-  $('#aiufiles').addClass('col-md-10');
+  $('#aiutablefiles').removeClass('col-md-6');
+  $('#aiutablefiles').addClass('col-md-10');
 });
-/*
-$("#aiupages").on('mouseleave', ".aiunav a", function(e) {
-  e.preventDefault();
-  console.log('leave aiunav');
-  $(this).removeClass('active');
-});
-*/

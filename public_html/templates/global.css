@@ -266,6 +266,7 @@ body {
   cursor: pointer;
 }
 .aiuviewer {
+  position: relative;
   display: none;
   right: 0;
   top: 0;
