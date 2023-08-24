@@ -60,5 +60,6 @@ def robots_txt(request):
         "Disallow: /css/",
         "Disallow: /get_param/",
         "Disallow: /doc/",
+        "Sitemap: https://anderaiu.su/sitemap.xml",
     ]
     return HttpResponse("\n".join(lines), content_type="text/plain")
