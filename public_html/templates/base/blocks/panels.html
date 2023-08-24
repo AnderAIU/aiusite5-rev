@@ -1,0 +1,18 @@
+{% for aiupanels in aiublock.get_panelblock %}
+<div class="container-fluid px-0 mx-0 aiupanels">
+    {% if aiupanels.title and aiupanels.title.strip %}
+    <div class="row justify-content-between">
+        <div class="w-100 pt-3">
+            <h2 class="aiu-custom-title"><span class="h5">{{ aiupanels.title }}</span></h2>
+        </div>
+    </div>
+    {% endif %}
+    <div class="row justify-content-between">
+        {% for aiupanelblock in aiupanels.getblock %}
+        <div class="col-8 col-md-2 col-lg-1 position-relative aiupanels__block" id="#{{ aiupanelblock.slug }}">
+            <a href="{{ aiupanelblock.urls }}" {% if aiupanelblock.nowpage %}target="_blank"{% endif %}>{{ aiupanelblock.title }}</a>
+        </div>
+        {% endblock %}
+    </div>
+</div>
+{% endfor %}

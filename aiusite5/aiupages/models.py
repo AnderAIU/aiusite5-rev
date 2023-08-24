@@ -111,6 +111,9 @@ class Blocks(models.Model):
     
     def get_extfiles(self):
         return ExtendedFiles.objects.filter(blockid=self)
+    
+    def get_aiupanel(self):
+        return PanelsBlock.objects.filter(blockid=self)
 
 class TextBlock(models.Model):
     blockid = models.ForeignKey(Blocks, on_delete=models.CASCADE, related_name="textblock_num")
@@ -313,6 +316,34 @@ class ExtendedFiles(models.Model):
     class Meta:
         verbose_name = 'Блок файловых элементов'
         verbose_name_plural = 'Блок файловых элементов'
+
+    def __str__(self):
+        return self.title
+    
+class PanelsBlock(models.Model):
+    blockid = models.ForeignKey(Blocks, on_delete=models.CASCADE, related_name="aiupanels")
+    title = models.CharField(default="", blank=True, max_length=255, verbose_name="Заголовок (если необходим)", help_text="Заголовок для блока")
+
+    class Meta:
+        verbose_name = 'Панель блок ссылок'
+        verbose_name_plural = 'Панель блок ссылок'
+    
+    def __str__(self):
+        return self.title
+    
+    def getblock(self):
+        return PanelBlockItem.objects.filter(panelid=self)
+
+class PanelBlockItem(models.Model):
+    panelid = models.ForeignKey(PanelsBlock, on_delete=models.CASCADE, related_name="aiupanelblock")
+    urls = models.CharField(default="", blank=True, max_length=255, verbose_name="Ссылка", help_text="Ссылка для открытия")
+    nowpage = models.BooleanField(default=True, verbose_name="Открывать ссылку в новой вкладке", help_text="Выбор открывать ссылку в новой вкладке или с перезагрузкой в текущей, для пользователей практично в новой вкладке")
+    title = models.CharField(default="", blank=True, max_length=255, verbose_name="Текст", help_text="Выводимый текст для ссылки")
+    order = models.IntegerField(default=0, verbose_name="Приоритет отображения", help_text="Чем меньше число, тем выше приоритет, как порядковый номер")
+
+    class Meta:
+        verbose_name = 'Элементы панели'
+        verbose_name_plural = 'Элементы панели'
 
     def __str__(self):
         return self.title

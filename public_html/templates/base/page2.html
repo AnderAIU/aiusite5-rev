@@ -4,6 +4,7 @@
 {% block textpage %}
     {{ aiupages.last.public_name|upper }}
 {% endblock %}
+{% block descr_page %}{{ aiupages.last.description }}{% endblock %}
 {% block pagecontent %}
 {% for page1 in aiupages %}
     {% for aiucontainer in page1.get_containers %}
@@ -21,6 +22,7 @@
                 {% include 'base/blocks/modern.html' %}
                 {% include 'base/blocks/diagram-col.html' %}
                 {% include 'base/blocks/extendedfiles.html' %}
+                {% include 'base/blocks/panels.html' %}
             </div>
         {% endfor %}
         </div>
