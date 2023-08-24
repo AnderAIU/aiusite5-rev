@@ -27,7 +27,7 @@ from aiusite5.views import page_index, pageNotFound
 from aiupages.views import *
 from aiucolors.views import css_renderer, js_renderer
 from convertpdf.views import *
-from .views import pagesroute
+from .views import pagesroute, robots_txt
 
 from django.views.generic import TemplateView
 
@@ -47,6 +47,7 @@ urlpatterns = [
     path('get_param/', get_param, name='get_param'),
     path('doc/', openfile, name="openfile"),
     path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
+    path('robots.txt', robots_txt),
     #path('pdffile/', page_test, name="pdffile"),
     path('<str:extpages>/', pagesroute),
 ]

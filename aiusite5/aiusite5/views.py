@@ -3,6 +3,7 @@ from django.views.generic.base import View
 from django.views.generic import TemplateView
 from django.template import Template, Context
 from django.http import HttpResponse
+from django.views.decorators.http import require_GET
 from django.shortcuts import redirect
 from aiupages.models import *
 from aiupages.views import pageshtml
@@ -50,3 +51,14 @@ def pagesroute(request, extpages):
         print('redirect 404')
         response.status_code = 301
         return response
+    
+@require_GET
+def robots_txt(request):
+    lines = [
+        "User-Agent: *",
+        "Disallow: /get_pages/",
+        "Disallow: /css/",
+        "Disallow: /get_param/",
+        "Disallow: /doc/",
+    ]
+    return HttpResponse("\n".join(lines), content_type="text/plain")
