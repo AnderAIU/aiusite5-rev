@@ -342,6 +342,7 @@ class PanelBlockItem(models.Model):
     order = models.IntegerField(default=0, verbose_name="Приоритет отображения", help_text="Чем меньше число, тем выше приоритет, как порядковый номер")
 
     class Meta:
+        ordering = ['order']
         verbose_name = 'Элементы панели'
         verbose_name_plural = 'Элементы панели'
 
