@@ -38,12 +38,15 @@ def pagesroute(request, extpages):
     print(extpages)
     print(list(Pages.objects.all().values_list('slug', flat=True)))
     if (any(extpages in s for s in list(Pages.objects.all().values_list('slug', flat=True)))):
-        response = redirect('/?name=' + extpages)
-        print('/?name=' + extpages)
+        if (extpages == 'home'):
+            response = redirect('/')
+        else:
+            response = redirect('/?name=' + extpages)
+        #print('/?name=' + extpages)
         response.status_code = 301
         return response
     else:
         response = redirect('/?name=404')
         print('redirect 404')
-        response.status_code = 200
+        response.status_code = 301
         return response

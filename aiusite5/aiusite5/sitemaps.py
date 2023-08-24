@@ -1,12 +1,13 @@
 from django.contrib import sitemaps
 from django.urls import reverse
+from aiupages.models import *
 
-class StaticViewSitemap(sitemaps.Sitemap):
+class DynamicViewSitemap(sitemaps.Sitemap):
     priority = 0.8
     changefreq = 'daily'
 
     def items(self):
-        return ['get_pages']
+        return Pages.objects.all()
 
     def location(self, item):
-        return reverse(item)
+        return f'/{item.slug}'

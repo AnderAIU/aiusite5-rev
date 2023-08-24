@@ -23,8 +23,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-r*c0o3)te)zsnx*1v!*pp@jvj2o(7$#8yv)p_0-adl6hdy%q5k'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-#DEBUG = False
+#DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['anderaiu.su', '192.168.6.19']
 
@@ -52,14 +52,51 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    #'csp.middleware.CSPMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
+    'django.middleware.security.SecurityMiddleware',
+    'django_permissions_policy.PermissionsPolicyMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+PERMISSIONS_POLICY = {
+    "accelerometer": [],
+    "ambient-light-sensor": [],
+    "autoplay": [],
+    "camera": [],
+    "display-capture": [],
+    "document-domain": [],
+    "encrypted-media": [],
+    "fullscreen": [],
+    "geolocation": [],
+    "gyroscope": [],
+    "interest-cohort": [],
+    "magnetometer": [],
+    "microphone": [],
+    "midi": [],
+    "payment": [],
+    "usb": [],
+}
+
+# Content Security Policy
+# Включить CSP
+#CSP_ENABLED = False
+# Разрешить использование встроенных JavaScript
+#CSP_ALLOW_UNSAFE_EVAL = True
+#CSP_IMG_SRC = ("'self'", 'https://anderaiu.su')
+#CSP_STYLE_SRC = ("'self'", 'https://anderaiu.su')
+#CSP_SCRIPT_SRC = ("'self'", 'https://anderaiu.su')
+#CSP_INCLUDE_NONCE_IN = ['script-src']
+
+SECURE_HSTS_SECONDS = 2592000  # Unit is seconds; *USE A SMALL VALUE FOR TESTING!*
+SECURE_HSTS_PRELOAD = True
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 
 ROOT_URLCONF = 'aiusite5.urls'
 

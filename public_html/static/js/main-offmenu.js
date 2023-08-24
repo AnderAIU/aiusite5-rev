@@ -312,6 +312,7 @@ $(function(){
       getPosts(id);
     }
   });
+  GPendload(true);
 });
 
 $("#aiupages").on('click', ".aiumodern a", function(e){

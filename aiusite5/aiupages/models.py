@@ -55,6 +55,15 @@ class Pages(models.Model):
     
     def get_containers(self):
         return Containers.objects.filter(page_member=self)
+        
+    def slugpage(self):
+        return f'{self.slug}'
+        
+    def get_absolute_url(self):
+        if (slugpage(self) == 'home'):
+            return f'/'
+        else:
+            return f'/{self.slug}'
     
 class Containers(models.Model):
     page_member = models.ForeignKey(Pages, on_delete=models.CASCADE, related_name="container_num")
