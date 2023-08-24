@@ -321,7 +321,7 @@ class ExtendedFiles(models.Model):
         return self.title
     
 class PanelsBlock(models.Model):
-    blockid = models.ForeignKey(Blocks, on_delete=models.CASCADE, related_name="aiupanels")
+    blockid = models.ForeignKey(Blocks, on_delete=models.CASCADE, related_name="panelsblock_cont")
     title = models.CharField(default="", blank=True, max_length=255, verbose_name="Заголовок (если необходим)", help_text="Заголовок для блока")
 
     class Meta:
@@ -335,7 +335,7 @@ class PanelsBlock(models.Model):
         return PanelBlockItem.objects.filter(panelid=self)
 
 class PanelBlockItem(models.Model):
-    panelid = models.ForeignKey(PanelsBlock, on_delete=models.CASCADE, related_name="aiupanelblock")
+    panelid = models.ForeignKey(PanelsBlock, on_delete=models.CASCADE, related_name="panelblock_item")
     urls = models.CharField(default="", blank=True, max_length=255, verbose_name="Ссылка", help_text="Ссылка для открытия")
     nowpage = models.BooleanField(default=True, verbose_name="Открывать ссылку в новой вкладке", help_text="Выбор открывать ссылку в новой вкладке или с перезагрузкой в текущей, для пользователей практично в новой вкладке")
     title = models.CharField(default="", blank=True, max_length=255, verbose_name="Текст", help_text="Выводимый текст для ссылки")

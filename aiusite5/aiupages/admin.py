@@ -3,6 +3,17 @@ import nested_admin
 from aiupages.models import *
 
 # Register your models here.
+
+#Panels
+class PanelsBlockItemInline(nested_admin.NestedTabularInline):
+    extra = 0
+    model = PanelBlockItem
+
+class PanelsBlockInline(nested_admin.NestedStackedInline):
+    extra = 0
+    model = PanelsBlock
+    inlines = [PanelsBlockItemInline]
+
 #Extended View File
 class ExtendedFilesInline(nested_admin.NestedTabularInline):
     extra = 0
@@ -84,7 +95,7 @@ class ContactBlockInline(nested_admin.NestedStackedInline):
 class BlocksInline(nested_admin.NestedStackedInline):
     extra = 0
     model = Blocks
-    inlines = [TextBlockInline, ModernBlockInline, ContactBlockInline, DiagrBlockInline, ExtendedFilesInline]
+    inlines = [TextBlockInline, ModernBlockInline, ContactBlockInline, DiagrBlockInline, ExtendedFilesInline, PanelsBlockInline]
 
 #Container in Page
 class ContainersInline(nested_admin.NestedStackedInline):
@@ -101,18 +112,3 @@ class PagesAdmin(nested_admin.NestedModelAdmin):
 admin.site.register(Pages, PagesAdmin)
 admin.site.register(FilesUpload, FilesUploadAdmin)
 admin.site.register(TagsMenu, TagsMenuAdmin)
-
-'''
-class PagesAdmin(admin.ModelAdmin):
-
-    def save_model(self, request, obj, form, change):
-        if not change: # Проверяем что запись только создаётся
-            obj.author = request.user # Присваеваем полю автор текущего пользователя
-    
-        super(PagesAdmin, self).save_model(
-            request=request,
-            obj=obj,
-            form=form,
-            change=change
-        )
-        '''
