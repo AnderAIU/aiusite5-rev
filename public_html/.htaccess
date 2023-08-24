@@ -1,6 +1,8 @@
 PassengerEnabled On
 PassengerPython /home/a/anderhul/anderaiu.su/env/bin/python
-#SetEnv LD_LIBRARY_PATH="/home/a/anderhul/anderaiu.su/env/lib"
+<ifModule mod_headers.c>
+    Header set X-XSS-Protection "1; mode=block"
+</IfModule>
 <Files "*.py">
     Require all denied
 </Files>
