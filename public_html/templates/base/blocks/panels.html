@@ -12,7 +12,7 @@
         <div class="col-8 col-md-2 col-lg-1 position-relative aiupanels__block" id="#{{ aiupanelblock.slug }}">
             <a href="{{ aiupanelblock.urls }}" {% if aiupanelblock.nowpage %}target="_blank"{% endif %}>{{ aiupanelblock.title }}</a>
         </div>
-        {% endblock %}
+        {% endfor %}
     </div>
 </div>
 {% endfor %}
