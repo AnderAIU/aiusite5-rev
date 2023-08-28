@@ -83,6 +83,8 @@ PERMISSIONS_POLICY = {
     "usb": [],
 }
 
+LOGIN_REDIRECT_URL = 'home'
+
 # Content Security Policy
 # Включить CSP
 #CSP_ENABLED = False

@@ -307,3 +307,18 @@ body {
   border: 2px solid {{ colors.hover_color }};
   color: {{ colors.hover_color }};
 }
+.aiupanels__block {
+  background-color: {{ colors.menu_text_color }};
+  border: 2px solid {{ colors.hover_color }};
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 5px;
+}
+.aiupanels__block a {
+  color: {{ colors.hover_color }};
+}
+.aiupanels .aiu-custom-title span:before, .aiupanels .aiu-custom-title span:after {
+  display: none;
+  content: '';
+}

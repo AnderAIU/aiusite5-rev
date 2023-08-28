@@ -3,13 +3,13 @@
     {% if aiupanels.title and aiupanels.title.strip %}
     <div class="row justify-content-between">
         <div class="w-100 pt-3">
-            <h2 class="aiu-custom-title text-center"><span class="h5">{{ aiupanels.title }}</span></h2>
+            <h2 class="aiu-custom-title text-center my-3"><span class="h4">{{ aiupanels.title }}</span></h2>
         </div>
     </div>
     {% endif %}
     <div class="row justify-content-center">
         {% for aiupanelblock in aiupanels.getblock %}
-        <div class="col-8 col-md-2 position-relative aiupanels__block" id="#{{ aiupanelblock.slug }}">
+        <div class="col-8 col-md-2 position-relative aiupanels__block py-1" id="#{{ aiupanelblock.slug }}">
             <a href="{{ aiupanelblock.urls }}" {% if aiupanelblock.nowpage %}target="_blank"{% endif %}>{{ aiupanelblock.title }}</a>
         </div>
         {% endfor %}
