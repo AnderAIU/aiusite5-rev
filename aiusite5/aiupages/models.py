@@ -114,6 +114,9 @@ class Blocks(models.Model):
     
     def get_aiupanel(self):
         return PanelsBlock.objects.filter(blockid=self)
+    
+    def profileblock(self):
+        return UsersBlock.objects.filter(blockid=self)
 
 class TextBlock(models.Model):
     blockid = models.ForeignKey(Blocks, on_delete=models.CASCADE, related_name="textblock_num")
@@ -345,6 +348,17 @@ class PanelBlockItem(models.Model):
         ordering = ['order']
         verbose_name = 'Элементы панели'
         verbose_name_plural = 'Элементы панели'
+
+    def __str__(self):
+        return self.title
+    
+class UsersBlock(models.Model):
+    blockid = models.ForeignKey(Blocks, on_delete=models.CASCADE, related_name="profileview")
+    title = models.CharField(default="", blank=True, max_length=255, verbose_name="Заголовок", help_text="Заголовок блока")
+
+    class Meta:
+        verbose_name = 'Отобразить профиль пользователя'
+        verbose_name_plural = 'Отобразить профиль пользователя'
 
     def __str__(self):
         return self.title

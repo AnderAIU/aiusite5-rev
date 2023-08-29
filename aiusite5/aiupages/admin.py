@@ -4,6 +4,11 @@ from aiupages.models import *
 
 # Register your models here.
 
+#userPage
+class UserBlockInline(nested_admin.NestedStackedInline):
+    extra = 0
+    model = UsersBlock
+
 #Panels
 class PanelsBlockItemInline(nested_admin.NestedTabularInline):
     extra = 0
@@ -95,7 +100,7 @@ class ContactBlockInline(nested_admin.NestedStackedInline):
 class BlocksInline(nested_admin.NestedStackedInline):
     extra = 0
     model = Blocks
-    inlines = [TextBlockInline, ModernBlockInline, ContactBlockInline, DiagrBlockInline, ExtendedFilesInline, PanelsBlockInline]
+    inlines = [TextBlockInline, ModernBlockInline, ContactBlockInline, DiagrBlockInline, ExtendedFilesInline, PanelsBlockInline, UserBlockInline]
 
 #Container in Page
 class ContainersInline(nested_admin.NestedStackedInline):
