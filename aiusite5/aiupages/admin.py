@@ -4,6 +4,10 @@ from aiupages.models import *
 
 # Register your models here.
 
+class ProfileInline(nested_admin.NestedModelAdmin):
+    extra = 0
+    models = Profile
+
 #userPage
 class UserBlockInline(nested_admin.NestedStackedInline):
     extra = 0
@@ -117,3 +121,4 @@ class PagesAdmin(nested_admin.NestedModelAdmin):
 admin.site.register(Pages, PagesAdmin)
 admin.site.register(FilesUpload, FilesUploadAdmin)
 admin.site.register(TagsMenu, TagsMenuAdmin)
+admin.site.register(Profile, ProfileInline)
