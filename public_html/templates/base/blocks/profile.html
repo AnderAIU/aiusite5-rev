@@ -1,0 +1,16 @@
+{% for aiuprofile in aiublock.profileblock %}
+<div class="container aiucontact px-0 py-0">
+    <div class="row justify-content-center">
+        <div class="col-3 align-items-center">
+            <img class="w-100" src="{{ user.profile.image.url }}">
+        </div>
+        <div class="col-9 align-items-center">
+            <h2 class="h5 account-heading">{{ user.username }}</h2>
+            <p class="h5 text-secondary">{{ user.email }}</p>
+        </div>
+    </div>
+    <div class="row">
+        <!-- Здесь будет форма -->
+    </div>
+</div>
+{% endfor %}
