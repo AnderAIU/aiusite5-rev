@@ -9,6 +9,8 @@ import random
 from functools import partial
 from django.template.defaultfilters import slugify as django_slugify
 from django.contrib.auth.models import User
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 from .validators import validate_file_extension
 
 alphabet = {'а': 'a', 'б': 'b', 'в': 'v', 'г': 'g', 'д': 'd', 'е': 'e', 'ё': 'yo', 'ж': 'zh', 'з': 'z', 'и': 'i',
@@ -363,7 +365,7 @@ class UsersBlock(models.Model):
 
     def __str__(self):
         return self.title
-
+    
 class Profile(models.Model):
     userid = models.OneToOneField(User, null=True, on_delete=models.CASCADE)
     bio = models.TextField(null=True, blank=True, verbose_name="О себе", help_text="О себе, например биография и прочее")
