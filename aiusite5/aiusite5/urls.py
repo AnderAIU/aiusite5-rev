@@ -48,7 +48,6 @@ urlpatterns = [
     path('doc/', openfile, name="openfile"),
     path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
     path('robots.txt', robots_txt),
-    path('lk/', include('django.contrib.auth.urls')),
     path('<str:extpages>/', pagesroute),
 ]
 
