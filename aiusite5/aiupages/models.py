@@ -365,16 +365,3 @@ class UsersBlock(models.Model):
 
     def __str__(self):
         return self.title
-    
-class Profile(models.Model):
-    userid = models.OneToOneField(User, null=True, on_delete=models.CASCADE)
-    bio = models.TextField(null=True, blank=True, verbose_name="О себе", help_text="О себе, например биография и прочее")
-    profile_pic = models.ImageField(null=True, blank=True, upload_to="images/profile-avatar/")
-    vkid = models.CharField(max_length=50, null=True, blank=True, verbose_name="Свой ВК", help_text="Свой VK для связи")
-
-    class Meta:
-        verbose_name = 'Профили пользователей'
-        verbose_name_plural = 'Профили пользователей'
-
-    def __str__(self):
-        return self.userid.get_username()
