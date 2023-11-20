@@ -1,4 +1,5 @@
 AIUsite5 CMS + Site
+PROJECT NULLED - new CGIE156FMBA-CMS
 CMS in developing in bases Django framework 4.2, Python 3.11 and modules extensions list in requirement.txt
 
 Components:
@@ -29,3 +30,4 @@ Install:
 Powered by @AnderAIU
 
 ![alt text](./public_html/media/images/anderaiu.jpg)
+
