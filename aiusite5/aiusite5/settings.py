@@ -134,8 +134,8 @@ DATABASES = {
         #'ENGINE': 'django.db.backends.postgresql',
         #'NAME': 'aiusite5',
         #'USER': 'postgres',
-        #'PASSWORD': 'odmirall231OD!',
-        #'HOST': '62.217.177.31',
+        #'PASSWORD': '123',
+        #'HOST': '1.1.1.1',
         #'PORT': '5432',
     }
 }
